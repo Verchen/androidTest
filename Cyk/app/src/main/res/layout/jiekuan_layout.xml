@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="金融项目"
+        android:text="餐小咖"
         android:textSize="20sp"
         android:background="@color/colorTheme"
         android:gravity="center"
@@ -19,14 +19,14 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:paddingBottom="10dp"
-        android:paddingLeft="40dp"
-        android:paddingRight="40dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
         android:background="@color/colorTheme">
 
         <Button
             android:id="@+id/id_shenqing_bt"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_weight="1"
             android:background="@drawable/shape_corner_left_selected"
             android:textColor="@color/colorTheme"
@@ -35,7 +35,7 @@
         <Button
             android:id="@+id/id_jindu_bt"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="35dp"
             android:layout_weight="1"
             android:background="@drawable/shape_corner_right_normal"
             android:textColor="#ffffff"
@@ -50,9 +50,6 @@
         android:layout_height="match_parent">
 
     </FrameLayout>
-    <!--<ListView-->
-        <!--android:id="@+id/jiekuan_list_view"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"></ListView>-->
+
 
 </LinearLayout>

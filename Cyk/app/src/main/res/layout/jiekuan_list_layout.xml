@@ -44,8 +44,7 @@
                 android:layout_height="wrap_content"
                 android:text="借款金额"
                 android:textColor="@color/colorTheme"
-                android:textStyle="bold"
-                android:textSize="20sp"/>
+                android:textSize="15sp"/>
 
             <TextView
                 android:id="@+id/jiekuan_jine"
@@ -74,7 +73,7 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="2dp"
+                android:layout_height="1dp"
                 android:background="@color/colorTheme" />
 
         </LinearLayout>
