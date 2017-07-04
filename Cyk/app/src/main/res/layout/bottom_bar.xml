@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/id_tab_news"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/id_tab_news_img"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:clickable="false"
+                android:background="#ffffff"
+                android:src="@drawable/jiekuan_normal" />
+
+            <TextView
+                android:id="@+id/id_tab_news_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:paddingTop="5dp"
+                android:textColor="#d3d3d3"
+                android:text="借款" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/id_tab_find"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/id_tab_find_img"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:clickable="false"
+                android:background="#ffffff"
+                android:paddingTop="5dp"
+                android:src="@drawable/renzheng_normal" />
+
+            <TextView
+                android:id="@+id/id_tab_find_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:paddingTop="5dp"
+                android:textColor="#d3d3d3"
+                android:text="认证" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/id_tab_live"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/id_tab_live_img"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:clickable="false"
+                android:background="#ffffff"
+                android:paddingTop="5dp"
+                android:src="@drawable/zhangdan_normal" />
+
+            <TextView
+                android:id="@+id/id_tab_live_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:paddingTop="5dp"
+                android:textColor="#d3d3d3"
+                android:text="账单" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/id_tab_mine"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/id_tab_mine_img"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:clickable="false"
+                android:background="#ffffff"
+                android:paddingTop="5dp"
+                android:src="@drawable/mine_normal" />
+
+            <TextView
+                android:id="@+id/id_tab_mine_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:paddingTop="5dp"
+                android:textColor="#d3d3d3"
+                android:text="我的" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

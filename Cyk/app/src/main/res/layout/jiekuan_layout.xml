@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f0f0f0">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="金融项目"
+        android:textSize="20sp"
+        android:background="@color/colorTheme"
+        android:gravity="center"
+        android:textColor="#ffffff"
+        android:textStyle="bold"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:background="@color/colorTheme">
+
+        <Button
+            android:id="@+id/id_shenqing_bt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/shape_corner_left_selected"
+            android:textColor="@color/colorTheme"
+            android:textSize="18dp"
+            android:text="申请借款"/>
+        <Button
+            android:id="@+id/id_jindu_bt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/shape_corner_right_normal"
+            android:textColor="#ffffff"
+            android:textSize="18dp"
+            android:text="进度查询"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/id_jiekuan_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+    <!--<ListView-->
+        <!--android:id="@+id/jiekuan_list_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"></ListView>-->
+
+</LinearLayout>
