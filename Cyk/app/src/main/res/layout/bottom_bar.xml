@@ -5,6 +5,11 @@
     android:background="#ffffff"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#cdcdcd"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,18 +28,18 @@
 
             <ImageButton
                 android:id="@+id/id_tab_news_img"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:clickable="false"
                 android:background="#ffffff"
+                android:scaleType="fitCenter"
                 android:src="@drawable/jiekuan_normal" />
 
             <TextView
                 android:id="@+id/id_tab_news_tv"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:paddingTop="5dp"
-                android:textColor="#d3d3d3"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
                 android:text="借款" />
 
         </LinearLayout>
@@ -49,19 +54,19 @@
 
             <ImageButton
                 android:id="@+id/id_tab_find_img"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:clickable="false"
                 android:background="#ffffff"
                 android:paddingTop="5dp"
+                android:scaleType="fitCenter"
                 android:src="@drawable/renzheng_normal" />
 
             <TextView
                 android:id="@+id/id_tab_find_tv"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:paddingTop="5dp"
-                android:textColor="#d3d3d3"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
                 android:text="认证" />
 
         </LinearLayout>
@@ -76,19 +81,19 @@
 
             <ImageButton
                 android:id="@+id/id_tab_live_img"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:clickable="false"
                 android:background="#ffffff"
                 android:paddingTop="5dp"
+                android:scaleType="fitCenter"
                 android:src="@drawable/zhangdan_normal" />
 
             <TextView
                 android:id="@+id/id_tab_live_tv"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:paddingTop="5dp"
-                android:textColor="#d3d3d3"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
                 android:text="账单" />
 
         </LinearLayout>
@@ -103,19 +108,19 @@
 
             <ImageButton
                 android:id="@+id/id_tab_mine_img"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:clickable="false"
                 android:background="#ffffff"
                 android:paddingTop="5dp"
+                android:scaleType="fitCenter"
                 android:src="@drawable/mine_normal" />
 
             <TextView
                 android:id="@+id/id_tab_mine_tv"
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:paddingTop="5dp"
-                android:textColor="#d3d3d3"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
                 android:text="我的" />
 
         </LinearLayout>
