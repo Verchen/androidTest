@@ -5,34 +5,39 @@
     android:background="#f0f0f0"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="50dp"
+        android:background="@color/colorTheme"
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="我的"
-            android:textSize="20sp"
-            android:background="@color/colorTheme"
-            android:gravity="center"
+            android:textSize="18sp"
+            android:layout_centerInParent="true"
             android:textColor="#ffffff"
             android:textStyle="bold"/>
 
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:scaleType="fitCenter"
+            android:background="@color/colorTheme"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
             android:src="@drawable/setting"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 
-
-    <TextView
+    <ListView
+        android:id="@+id/id_wode_list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textColor="#000000"
-        android:text="我是我的页面"/>
+        android:layout_height="match_parent">
+
+    </ListView>
 
 </LinearLayout>
