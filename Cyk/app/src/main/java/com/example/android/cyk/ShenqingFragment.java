@@ -1,12 +1,14 @@
 package com.example.android.cyk;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.android.cyk.Adapter.Jiekuan_list_adapter;
@@ -15,7 +17,7 @@ import com.example.android.cyk.Adapter.Jiekuan_list_adapter;
  * Created by qiao on 2017/7/3.
  */
 
-public class ShenqingFragment extends Fragment {
+public class ShenqingFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     Context context;
 
@@ -62,7 +64,17 @@ public class ShenqingFragment extends Fragment {
 
         adapter = new Jiekuan_list_adapter(dataSource, context);
         listView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+
+        listView.setOnItemClickListener(this);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Intent intent = new Intent(context, QuerenjiekuanActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("shenqingID", "1000");
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }
 

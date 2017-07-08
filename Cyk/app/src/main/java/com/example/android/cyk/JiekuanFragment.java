@@ -109,6 +109,5 @@ public class JiekuanFragment extends Fragment implements View.OnClickListener{
         shenqing_bt.setTextColor(Color.parseColor("#ffffff"));
         jindu_bt.setBackgroundResource(R.drawable.shape_corner_right_normal);
         jindu_bt.setTextColor(Color.parseColor("#ffffff"));
-
     }
 }
