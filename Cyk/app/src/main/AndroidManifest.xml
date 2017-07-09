@@ -18,7 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".QuerenjiekuanActivity"></activity>
+        <activity android:name=".QuerenjiekuanActivity" />
+        <activity android:name=".ShengqingSuccessActivity"></activity>
     </application>
 
 </manifest>

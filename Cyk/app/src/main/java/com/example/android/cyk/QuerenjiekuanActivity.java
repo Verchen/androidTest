@@ -1,5 +1,6 @@
 package com.example.android.cyk;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -27,6 +28,11 @@ public class QuerenjiekuanActivity extends AppCompatActivity {
 
     private void initEvent() {
 
+    }
+
+    public void querenClick(View view){
+        Intent intent = new Intent(this, ShengqingSuccessActivity.class);
+        startActivity(intent);
     }
 
     public void back(View view){
