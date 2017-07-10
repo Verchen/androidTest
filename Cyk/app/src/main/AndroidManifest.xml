@@ -19,7 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".QuerenjiekuanActivity" />
-        <activity android:name=".ShengqingSuccessActivity"></activity>
+        <activity android:name=".ShengqingSuccessActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegistActivity"></activity>
     </application>
 
 </manifest>

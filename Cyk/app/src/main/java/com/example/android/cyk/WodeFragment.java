@@ -1,12 +1,14 @@
 package com.example.android.cyk;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.android.cyk.Adapter.Wode_adapter;
@@ -17,7 +19,7 @@ import java.util.ArrayList;
  * Created by qiao on 2017/7/3.
  */
 
-public class WodeFragment extends Fragment {
+public class WodeFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     Context mContext;
     ListView listView;
@@ -48,5 +50,16 @@ public class WodeFragment extends Fragment {
         listView = getView().findViewById(R.id.id_wode_list_view);
         wode_adapter = new Wode_adapter(mContext, listString);
         listView.setAdapter(wode_adapter);
+
+        listView.setOnItemClickListener(this);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+        if (i == 5 ){
+            Intent intent = new Intent(getContext(), LoginActivity.class);
+            startActivity(intent);
+        }
     }
 }
