@@ -1,7 +1,8 @@
 package com.example.android.cyk;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -29,6 +30,11 @@ public class ContactsActivity extends AppCompatActivity implements AdapterView.O
 
     public void back(View view){
         ContactsActivity.this.finish();
+    }
+
+    public void addContact(View view){
+        Intent intent = new Intent(this, AddContactActivity.class);
+        startActivity(intent);
     }
 
     @Override
