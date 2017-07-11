@@ -1,6 +1,7 @@
 package com.example.android.cyk;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,7 +16,7 @@ import com.example.android.cyk.Adapter.Renzheng_adapter;
  * Created by qiao on 2017/7/3.
  */
 
-public class RenzhengFragment extends Fragment {
+public class RenzhengFragment extends Fragment implements Renzheng_adapter.Callback {
 
     ListView listView;
     Renzheng_adapter adapter;
@@ -37,7 +38,23 @@ public class RenzhengFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         listView = getView().findViewById(R.id.id_renzheng_listview);
-        adapter = new Renzheng_adapter(mContext);
+        adapter = new Renzheng_adapter(mContext, this);
         listView.setAdapter(adapter);
+    }
+
+    @Override
+    public void click(int i) {
+        switch (i){
+            case 0:
+                Intent intent = new Intent(mContext, ContactsActivity.class);
+                startActivity(intent);
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
     }
 }

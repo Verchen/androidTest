@@ -5,6 +5,7 @@
     android:orientation="horizontal">
 
     <Button
+        android:id="@+id/id_lianxiren_bt"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
@@ -15,6 +16,7 @@
         android:paddingBottom="5dp"
         android:text="联系人"/>
     <Button
+        android:id="@+id/id_yinhangka_bt"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
@@ -25,6 +27,7 @@
         android:paddingBottom="5dp"
         android:text="银行卡"/>
     <Button
+        android:id="@+id/id_shoujiShiming_bt"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
@@ -35,6 +38,7 @@
         android:paddingBottom="5dp"
         android:text="手机实名"/>
     <Button
+        android:id="@+id/id_shenfenRenzheng_bt"
         android:layout_width="0dp"
         android:layout_weight="1"
         android:layout_height="wrap_content"
