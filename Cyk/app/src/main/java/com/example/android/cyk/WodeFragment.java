@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.example.android.cyk.Adapter.Wode_adapter;
@@ -25,6 +26,7 @@ public class WodeFragment extends Fragment implements AdapterView.OnItemClickLis
     ListView listView;
     Wode_adapter wode_adapter;
     ArrayList<String> listString;
+    ImageButton setting_bt;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +49,15 @@ public class WodeFragment extends Fragment implements AdapterView.OnItemClickLis
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        setting_bt = getView().findViewById(R.id.id_setting_bt);
+        setting_bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, SettingActivity.class);
+                startActivity(intent);
+            }
+        });
+
         listView = getView().findViewById(R.id.id_wode_list_view);
         wode_adapter = new Wode_adapter(mContext, listString);
         listView.setAdapter(wode_adapter);
@@ -62,4 +73,5 @@ public class WodeFragment extends Fragment implements AdapterView.OnItemClickLis
             startActivity(intent);
         }
     }
+
 }

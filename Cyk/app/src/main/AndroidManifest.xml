@@ -21,7 +21,9 @@
         <activity android:name=".QuerenjiekuanActivity" />
         <activity android:name=".ShengqingSuccessActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".RegistActivity"></activity>
+        <activity android:name=".RegistActivity" />
+        <activity android:name=".SettingActivity" />
+        <activity android:name=".ContactsActivity"></activity>
     </application>
 
 </manifest>
