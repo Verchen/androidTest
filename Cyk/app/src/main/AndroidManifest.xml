@@ -26,7 +26,8 @@
         <activity android:name=".ContactsActivity" />
         <activity android:name=".AddContactActivity" />
         <activity android:name=".BankCardActivity" />
-        <activity android:name=".PhoneShimingActivity"></activity>
+        <activity android:name=".PhoneShimingActivity" />
+        <activity android:name=".ShenfenRenzhengActivity"></activity>
     </application>
 
 </manifest>

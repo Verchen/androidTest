@@ -58,6 +58,8 @@ public class RenzhengFragment extends Fragment implements Renzheng_adapter.Callb
                 startActivity(intent2);
                 break;
             case 3:
+                Intent intent3 = new Intent(mContext, ShenfenRenzhengActivity.class);
+                startActivity(intent3);
                 break;
         }
     }
