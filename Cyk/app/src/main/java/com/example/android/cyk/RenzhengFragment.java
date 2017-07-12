@@ -50,8 +50,12 @@ public class RenzhengFragment extends Fragment implements Renzheng_adapter.Callb
                 startActivity(intent);
                 break;
             case 1:
+                Intent intent1 = new Intent(mContext, BankCardActivity.class);
+                startActivity(intent1);
                 break;
             case 2:
+                Intent intent2 = new Intent(mContext, PhoneShimingActivity.class);
+                startActivity(intent2);
                 break;
             case 3:
                 break;

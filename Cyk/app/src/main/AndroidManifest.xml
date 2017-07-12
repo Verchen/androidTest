@@ -24,7 +24,9 @@
         <activity android:name=".RegistActivity" />
         <activity android:name=".SettingActivity" />
         <activity android:name=".ContactsActivity" />
-        <activity android:name=".AddContactActivity"></activity>
+        <activity android:name=".AddContactActivity" />
+        <activity android:name=".BankCardActivity" />
+        <activity android:name=".PhoneShimingActivity"></activity>
     </application>
 
 </manifest>
