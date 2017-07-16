@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }else {
                     transaction.show(jiekuan_fragment);
                 }
-                tab_news_img.setImageResource(R.drawable.jie);
+                tab_news_img.setImageResource(R.drawable.jiekuan_select);
                 tab_news_tv.setTextColor(Color.parseColor("#82cdc4"));
                 break;
             case 1:

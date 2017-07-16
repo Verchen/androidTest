@@ -39,7 +39,7 @@
                 android:id="@+id/id_tab_news_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:text="借款" />
 
         </LinearLayout>
@@ -66,7 +66,7 @@
                 android:id="@+id/id_tab_find_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:text="认证" />
 
         </LinearLayout>
@@ -93,7 +93,7 @@
                 android:id="@+id/id_tab_live_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:text="账单" />
 
         </LinearLayout>
@@ -120,7 +120,7 @@
                 android:id="@+id/id_tab_mine_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12sp"
+                android:textSize="11sp"
                 android:text="我的" />
 
         </LinearLayout>
