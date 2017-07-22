@@ -33,7 +33,7 @@
                 android:clickable="false"
                 android:background="#ffffff"
                 android:scaleType="fitCenter"
-                android:src="@drawable/jiekuan_normal" />
+                android:src="@drawable/tabbar_home_normal" />
 
             <TextView
                 android:id="@+id/id_tab_news_tv"
@@ -60,7 +60,7 @@
                 android:background="#ffffff"
                 android:paddingTop="5dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/renzheng_normal" />
+                android:src="@drawable/tabbar_auth_normal" />
 
             <TextView
                 android:id="@+id/id_tab_find_tv"
@@ -87,7 +87,7 @@
                 android:background="#ffffff"
                 android:paddingTop="5dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/zhangdan_normal" />
+                android:src="@drawable/tabbar_zhangdan_normal" />
 
             <TextView
                 android:id="@+id/id_tab_live_tv"
@@ -114,7 +114,7 @@
                 android:background="#ffffff"
                 android:paddingTop="5dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/mine_normal" />
+                android:src="@drawable/tabbar_wo_normal" />
 
             <TextView
                 android:id="@+id/id_tab_mine_tv"

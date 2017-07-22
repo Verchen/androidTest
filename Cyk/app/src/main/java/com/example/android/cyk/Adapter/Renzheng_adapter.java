@@ -82,11 +82,11 @@ public class Renzheng_adapter extends BaseAdapter implements View.OnClickListene
                     textView.setText("京东白条");
                     break;
                 case 5:
-                    imageView.setImageResource(R.drawable.zhima);
+                    imageView.setImageResource(R.drawable.tong);
                     textView.setText("手机账单");
                     break;
                 case 6:
-                    imageView.setImageResource(R.drawable.zhima);
+                    imageView.setImageResource(R.drawable.zd_icon);
                     textView.setText("信用卡账单");
                     break;
             }

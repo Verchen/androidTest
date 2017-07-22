@@ -71,7 +71,7 @@ public class Wode_adapter extends BaseAdapter {
                 case 1:
                 {
                     ImageView imageView = view.findViewById(R.id.id_wo_menu_img);
-                    imageView.setImageResource(R.mipmap.ic_launcher);
+                    imageView.setImageResource(R.drawable.backpack);
                     TextView textView = view.findViewById(R.id.id_wo_menu_tv);
                     textView.setText("我的信息");
                     break;
@@ -80,7 +80,7 @@ public class Wode_adapter extends BaseAdapter {
                 case 2:
                 {
                     ImageView imageView = view.findViewById(R.id.id_wo_menu_img);
-                    imageView.setImageResource(R.mipmap.ic_launcher);
+                    imageView.setImageResource(R.drawable.backpack);
                     TextView textView = view.findViewById(R.id.id_wo_menu_tv);
                     textView.setText("账单");
                     break;
@@ -88,7 +88,7 @@ public class Wode_adapter extends BaseAdapter {
                 case 3:
                 {
                     ImageView imageView = view.findViewById(R.id.id_wo_menu_img);
-                    imageView.setImageResource(R.mipmap.ic_launcher);
+                    imageView.setImageResource(R.drawable.password_icon);
                     TextView textView = view.findViewById(R.id.id_wo_menu_tv);
                     textView.setText("借款记录");
                     break;
@@ -96,7 +96,7 @@ public class Wode_adapter extends BaseAdapter {
                 case 4:
                 {
                     ImageView imageView = view.findViewById(R.id.id_wo_menu_img);
-                    imageView.setImageResource(R.mipmap.ic_launcher);
+                    imageView.setImageResource(R.drawable.password_icon);
                     TextView textView = view.findViewById(R.id.id_wo_menu_tv);
                     textView.setText("更改密码");
                     break;

@@ -9,6 +9,7 @@
     android:orientation="horizontal">
 
     <LinearLayout
+        android:id="@+id/jiekaun_item_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
@@ -16,9 +17,10 @@
         android:background="@drawable/shape_corner">
 
         <TextView
+            android:id="@+id/jiekuan_item_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@mipmap/ic_launcher"
+            android:drawableTop="@drawable/lock"
             android:textColor="@color/colorTheme"
             android:text="LV1"
             android:paddingTop="15dp"
@@ -83,7 +85,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="15dp"
             android:paddingRight="15dp"
-            android:src="@mipmap/ic_launcher_round"/>
+            android:src="@drawable/right_icon"/>
 
     </LinearLayout>
 

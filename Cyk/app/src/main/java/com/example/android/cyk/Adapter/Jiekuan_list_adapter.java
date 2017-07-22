@@ -1,6 +1,7 @@
 package com.example.android.cyk.Adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.style.AbsoluteSizeSpan;
@@ -49,6 +50,24 @@ public class Jiekuan_list_adapter extends BaseAdapter {
         LayoutInflater inflater = LayoutInflater.from(context);
         layout = (LinearLayout) inflater.inflate(R.layout.jiekuan_list_layout, null);
         TextView jine = layout.findViewById(R.id.jiekuan_jine);
+        LinearLayout bg = layout.findViewById(R.id.jiekaun_item_bg);
+        TextView level = layout.findViewById(R.id.jiekuan_item_level);
+
+        switch (i)
+        {
+            case 0:
+                bg.setBackgroundResource(R.drawable.shape_corner_white);
+
+                Drawable drawable = context.getResources().getDrawable(R.drawable.lock_open);
+                drawable.setBounds(0,0,drawable.getMinimumWidth(),drawable.getMinimumHeight());
+
+                level.setCompoundDrawables(null, drawable, null, null);
+
+                break;
+
+            default:
+                break;
+        }
 
         final SpannableStringBuilder sp = new  SpannableStringBuilder("700元");
         sp.setSpan(new ForegroundColorSpan(0xff82cdc4), "700".length(), "700元".length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); //字体颜色

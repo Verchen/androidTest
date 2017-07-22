@@ -94,10 +94,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void resetStatus() {
-        tab_news_img.setImageResource(R.drawable.jiekuan_normal);
-        tab_find_img.setImageResource(R.drawable.renzheng_normal);
-        tab_live_img.setImageResource(R.drawable.zhangdan_normal);
-        tab_mine_img.setImageResource(R.drawable.mine_normal);
+        tab_news_img.setImageResource(R.drawable.tabbar_home_normal);
+        tab_find_img.setImageResource(R.drawable.tabbar_auth_normal);
+        tab_live_img.setImageResource(R.drawable.tabbar_zhangdan_normal);
+        tab_mine_img.setImageResource(R.drawable.tabbar_wo_normal);
 
         tab_news_tv.setTextColor(Color.parseColor("#cdcdcd"));
         tab_find_tv.setTextColor(Color.parseColor("#cdcdcd"));
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }else {
                     transaction.show(jiekuan_fragment);
                 }
-                tab_news_img.setImageResource(R.drawable.jiekuan_select);
+                tab_news_img.setImageResource(R.drawable.tabbar_home_select);
                 tab_news_tv.setTextColor(Color.parseColor("#82cdc4"));
                 break;
             case 1:
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }else {
                     transaction.show(renzheng_fragment);
                 }
-                tab_find_img.setImageResource(R.drawable.renzheng_select);
+                tab_find_img.setImageResource(R.drawable.tabbar_auth_select);
                 tab_find_tv.setTextColor(Color.parseColor("#82cdc4"));
                 break;
             case 2:
@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }else {
                     transaction.show(zhangdan_fragment);
                 }
-                tab_live_img.setImageResource(R.drawable.zhangdan_select);
+                tab_live_img.setImageResource(R.drawable.tabbar_zhangdan_select);
                 tab_live_tv.setTextColor(Color.parseColor("#82cdc4"));
                 break;
             case 3:
@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }else {
                     transaction.show(wode_fragment);
                 }
-                tab_mine_img.setImageResource(R.drawable.mine_select);
+                tab_mine_img.setImageResource(R.drawable.tabbar_wo_select);
                 tab_mine_tv.setTextColor(Color.parseColor("#82cdc4"));
                 break;
         }

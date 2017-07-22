@@ -27,18 +27,6 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
             "GridView控件演示",
             "ScrollView控件演示",
             "ListView控件演示",
-            "ProgressBar控件演示",
-            "GridView控件演示",
-            "ScrollView控件演示",
-            "ListView控件演示",
-            "ProgressBar控件演示",
-            "GridView控件演示",
-            "ScrollView控件演示",
-            "ListView控件演示",
-            "ProgressBar控件演示",
-            "GridView控件演示",
-            "ScrollView控件演示",
-            "DatePicker控件演示"
     };
 
     private ListView listView;
