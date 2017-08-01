@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +20,6 @@ import com.example.android.cyk.Adapter.Jiekuan_list_adapter;
 import com.example.android.cyk.Model.BorrowModel;
 import com.example.android.cyk.Model.TokenModel;
 import com.google.gson.Gson;
-import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
-import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -51,7 +50,7 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
 
     private ListView listView;
     private Jiekuan_list_adapter adapter;
-    private TwinklingRefreshLayout refreshLayout;
+    private SwipeRefreshLayout refreshLayout;
 
     private Handler handler;
 
@@ -78,13 +77,11 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
 
-        refreshLayout = getView().findViewById(R.id.refresh);
-        refreshLayout.setEnableLoadmore(false);
-        refreshLayout.setOnRefreshListener(new RefreshListenerAdapter() {
+        refreshLayout = getView().findViewById(R.id.id_shenqing_refresh);
+        refreshLayout.setColorSchemeResources(R.color.colorTheme);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onRefresh(TwinklingRefreshLayout refreshLayout) {
-//                super.onRefresh(refreshLayout);
-//                refreshBorrowList();
+            public void onRefresh() {
                 requestBorrowList();
             }
         });
@@ -93,7 +90,7 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
-                refreshLayout.finishRefreshing();
+                refreshLayout.setRefreshing(false);
                 String response = msg.getData().getString("response");
                 Gson gson = new Gson();
                 borrowModel = gson.fromJson(response, BorrowModel.class);

@@ -7,13 +7,16 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.android.cyk.Adapter.Yinghuan_adapter;
+import com.example.android.cyk.Model.BillModel;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -31,7 +34,7 @@ import okhttp3.Response;
  * Created by qiao on 2017/7/6.
  */
 
-public class YinghuanFragment extends Fragment {
+public class YinghuanFragment extends Fragment implements Yinghuan_adapter.Callback {
 
     private ListView listView;
     private Yinghuan_adapter adapter;
@@ -40,6 +43,8 @@ public class YinghuanFragment extends Fragment {
     private OkHttpClient client = new OkHttpClient();
     private Gson gson = new Gson();
     private Handler handler;
+    private BillModel billModel;
+    private SwipeRefreshLayout refreshLayout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,16 +64,28 @@ public class YinghuanFragment extends Fragment {
 
         sharedPreferences = mContext.getSharedPreferences("tokenSP", 0);
 
+        refreshLayout = getView().findViewById(R.id.id_zhangdan_refresh);
+        refreshLayout.setColorSchemeResources(R.color.colorTheme);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                requestReply();
+            }
+        });
+
         listView = getView().findViewById(R.id.id_yinghuan_list_view);
-        adapter = new Yinghuan_adapter(mContext);
+        adapter = new Yinghuan_adapter(mContext, this);
         listView.setAdapter(adapter);
 
         handler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
+                refreshLayout.setRefreshing(false);
                 String response = msg.getData().getString("response");
+                billModel = gson.fromJson(response, BillModel.class);
                 Log.e("账单列表", response);
+                adapter.setModel(billModel.getData());
             }
         };
 
@@ -101,6 +118,10 @@ public class YinghuanFragment extends Fragment {
                 handler.sendMessage(msg);
             }
         });
+    }
 
+    @Override
+    public void huanClick(BillModel.BillList.BillItem item) {
+        Toast.makeText(mContext, "还了", Toast.LENGTH_SHORT).show();
     }
 }

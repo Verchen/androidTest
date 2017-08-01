@@ -3,11 +3,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ListView
-        android:id="@+id/id_yinghuan_list_view"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/id_zhangdan_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </ListView>
+        <ListView
+            android:id="@+id/id_yinghuan_list_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+
 
 </LinearLayout>

@@ -30,7 +30,6 @@ dependencies {
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.makeramen:roundedimageview:2.3.0'  //圆角图片
     compile 'com.white.countdownbutton:countdownbtn:1.0.1' //倒计时按钮
-    compile 'com.lcodecorex:tkrefreshlayout:1.0.7' //刷新空间
     compile 'com.kaopiz:kprogresshud:1.1.0' //hud指示器
     testCompile 'junit:junit:4.12'
 }
