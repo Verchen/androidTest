@@ -12,6 +12,7 @@
         android:background="#ffffff"
         android:padding="5dp">
         <TextView
+            android:id="@+id/id_moneyCount_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="借款金额6000元 | 14天期限"
@@ -30,6 +31,7 @@
             android:textColor="#ffffff"
             android:text="本金"/>
         <TextView
+            android:id="@+id/id_benjin_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="5000"
@@ -50,6 +52,7 @@
             android:text="利息/服务费"
             android:textColor="#000000"/>
         <TextView
+            android:id="@+id/id_lixi_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="5000"
@@ -70,6 +73,7 @@
             android:textColor="#ffffff"
             android:text="还款方式"/>
         <TextView
+            android:id="@+id/id_huanType_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="等额本金"
@@ -90,6 +94,7 @@
             android:text="状态"
             android:textColor="#000000"/>
         <TextView
+            android:id="@+id/id_state_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="审核中"
@@ -99,6 +104,7 @@
     </RelativeLayout>
 
     <Button
+        android:id="@+id/id_cancel_bt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorTheme"

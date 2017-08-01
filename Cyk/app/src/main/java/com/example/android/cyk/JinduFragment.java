@@ -1,7 +1,10 @@
 package com.example.android.cyk;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +13,21 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.example.android.cyk.Adapter.Jindu_adapter;
+import com.example.android.cyk.Model.ProgressModel;
+import com.google.gson.Gson;
+import com.lcodecore.tkrefreshlayout.RefreshListenerAdapter;
+import com.lcodecore.tkrefreshlayout.TwinklingRefreshLayout;
+
+import java.io.IOException;
+import java.util.Date;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /**
  * Created by qiao on 2017/7/3.
@@ -20,11 +38,17 @@ public class JinduFragment extends Fragment {
     private Context mContext;
     private ListView listView;
     private Jindu_adapter adapter;
+    private OkHttpClient client = new OkHttpClient();
+    private Gson gson = new Gson();
+    private SharedPreferences sharedPreferences;
+    private Handler listHandler;
+    private TwinklingRefreshLayout refreshLayout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.mContext = getContext();
+        sharedPreferences = mContext.getSharedPreferences("tokenSP", 0);
     }
 
     @Nullable
@@ -39,5 +63,57 @@ public class JinduFragment extends Fragment {
         listView = getView().findViewById(R.id.id_jindu_list_view);
         adapter = new Jindu_adapter(mContext);
         listView.setAdapter(adapter);
+
+        refreshLayout = getView().findViewById(R.id.jindu_refresh);
+        refreshLayout.setEnableLoadmore(false);
+        refreshLayout.setOnRefreshListener(new RefreshListenerAdapter() {
+            @Override
+            public void onRefresh(TwinklingRefreshLayout refreshLayout) {
+                super.onRefresh(refreshLayout);
+                requestProgressList();
+            }
+        });
+
+        listHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                refreshLayout.finishRefreshing();
+                String response = msg.getData().getString("response");
+                ProgressModel model = gson.fromJson(response, ProgressModel.class);
+                adapter.setDataSource(model.getData());
+            }
+        };
+        requestProgressList();
     }
+
+    private void requestProgressList() {
+        RequestBody body = new FormBody.Builder()
+                .addEncoded("userId", "1")
+                .addEncoded("access_token", sharedPreferences.getString("token", ""))
+                .addEncoded("timestamp", String.valueOf(new Date().getTime()))
+                .build();
+        Request request = new Request.Builder()
+                .url(getString(R.string.host_url)+"/project/progress")
+                .post(body)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Message msg = new Message();
+                Bundle data = new Bundle();
+                data.putString("response", response.body().string());
+                msg.setData(data);
+                listHandler.sendMessage(msg);
+            }
+        });
+
+    }
+
+
 }

@@ -86,7 +86,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="15dp"
+            android:paddingLeft="5dp"
             android:paddingRight="15dp"
             android:src="@drawable/right_icon"/>
 

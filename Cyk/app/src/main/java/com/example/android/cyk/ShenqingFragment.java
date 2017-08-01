@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -51,6 +53,8 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
     private Jiekuan_list_adapter adapter;
     private TwinklingRefreshLayout refreshLayout;
 
+    private Handler handler;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,16 +75,33 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
 
         listView = getView().findViewById(R.id.shenqing_list_view);
         adapter = new Jiekuan_list_adapter(items, context);
+        listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
 
         refreshLayout = getView().findViewById(R.id.refresh);
+        refreshLayout.setEnableLoadmore(false);
         refreshLayout.setOnRefreshListener(new RefreshListenerAdapter() {
             @Override
             public void onRefresh(TwinklingRefreshLayout refreshLayout) {
-                super.onRefresh(refreshLayout);
-                refreshBorrowList();
+//                super.onRefresh(refreshLayout);
+//                refreshBorrowList();
+                requestBorrowList();
             }
         });
+
+        handler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                refreshLayout.finishRefreshing();
+                String response = msg.getData().getString("response");
+                Gson gson = new Gson();
+                borrowModel = gson.fromJson(response, BorrowModel.class);
+                Log.e("借款列表", borrowModel.getData().toString());
+                items = borrowModel.getData();
+                adapter.setDataSource(items);
+            }
+        };
 
         requestToken();
 
@@ -107,10 +128,15 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                Gson gson = new Gson();
-                tokenModel = gson.fromJson(response.body().string(), TokenModel.class);
-                Log.e("获取token", tokenModel.toString());
-                requestRefreshToken();
+                try {
+                    Gson gson = new Gson();
+                    tokenModel = gson.fromJson(response.body().string(), TokenModel.class);
+                    Log.e("获取token", tokenModel.toString());
+                    requestRefreshToken();
+                }catch (Exception e) {
+                    Log.e("捕捉token崩溃", e.toString());
+                }
+
             }
         });
     }
@@ -137,70 +163,53 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
             @Override
             public void onResponse(Call call, Response response) throws IOException {
 
-                Gson gson = new Gson();
-                TokenModel model = gson.fromJson(response.body().string(), TokenModel.class);
-                Log.e("获取到刷新token", model.getAccess_token());
-                sp.edit().putString("token", model.getAccess_token()).commit();
+                try {
+                    Gson gson = new Gson();
+                    TokenModel model = gson.fromJson(response.body().string(), TokenModel.class);
+                    Log.e("获取到刷新token", model.getAccess_token());
+                    sp.edit().putString("token", model.getAccess_token()).commit();
+                }catch (Exception e){
+                    Log.e("捕捉刷新token崩溃", e.toString());
+                }
+
             }
         });
     }
 
 
     private void requestBorrowList() {
-        long time = new Date().getTime();
-        RequestBody body = new FormBody.Builder()
-                .addEncoded("userId", "1")
-                .addEncoded("access_token", sp.getString("token", ""))
-                .addEncoded("timestamp", String.valueOf(time))
-                .build();
-        Request request = new Request.Builder()
-                .url(getString(R.string.host_url)+"/project/list")
-                .post(body)
-                .build();
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
+        try {
+            long time = new Date().getTime();
+            RequestBody body = new FormBody.Builder()
+                    .addEncoded("userId", "1")
+                    .addEncoded("access_token", sp.getString("token", ""))
+                    .addEncoded("timestamp", String.valueOf(time))
+                    .build();
+            Request request = new Request.Builder()
+                    .url(getString(R.string.host_url)+"/project/list")
+                    .post(body)
+                    .build();
+            client.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
 
-            }
+                }
 
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                Gson gson = new Gson();
-                borrowModel = gson.fromJson(response.body().string(), BorrowModel.class);
-                Log.e("借款列表", borrowModel.getData().toString());
-                items = borrowModel.getData();
-                adapter.setDataSource(items);
-            }
-        });
-    }
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    if (response.isSuccessful()) {
+                        Message msg = new Message();
+                        Bundle data = new Bundle();
+                        data.putString("response", response.body().string());
+                        msg.setData(data);
+                        handler.sendMessage(msg);
+                    }
+                }
+            });
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
-    private void refreshBorrowList(){
-        long time = new Date().getTime();
-        RequestBody body = new FormBody.Builder()
-                .addEncoded("userId", "1")
-                .addEncoded("access_token", sp.getString("token", ""))
-                .addEncoded("timestamp", String.valueOf(time))
-                .build();
-        Request request = new Request.Builder()
-                .url(getString(R.string.host_url)+"/project/list")
-                .post(body)
-                .build();
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                refreshLayout.finishRefreshing();
-//                Gson gson = new Gson();
-//                borrowModel = gson.fromJson(response.body().string(), BorrowModel.class);
-//                Log.e("借款列表", borrowModel.getData().toString());
-//                adapter = new Jiekuan_list_adapter(borrowModel.getData(), context);
-//                listView.setAdapter(adapter);
-            }
-        });
     }
 
     @Override

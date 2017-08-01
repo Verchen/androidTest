@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:src="@mipmap/ic_launcher"/>
+            android:src="@drawable/apply_sucess"/>
 
         <TextView
             android:id="@+id/success_tv"
@@ -46,19 +46,23 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/success_img"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="25dp"
             android:textColor="#000000"
             android:gravity="center"
             android:text="您的借款已提交申请\n系统会在1-2小时内审核完成"/>
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
             android:layout_below="@id/success_tv"
-            android:layout_alignParentRight="true"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
             android:text="查看申请进度"
-            android:background="#ffffff"
-            android:textColor="#000000"/>
+            android:background="@color/colorTheme"
+            android:textColor="@color/colorWhite"
+            android:onClick="back"/>
 
     </RelativeLayout>
 

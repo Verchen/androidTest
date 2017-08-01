@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#eeeeee"
     android:orientation="vertical">
 
     <!--标题栏-->
@@ -36,9 +37,9 @@
         android:padding="20dp"
         android:orientation="vertical">
         <TextView
+            android:id="@+id/level_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="LV1"
             android:textColor="@color/colorTheme"/>
 
         <LinearLayout
@@ -58,10 +59,10 @@
                     android:textColor="#000000"
                     android:text="到账金额"/>
                 <TextView
+                    android:id="@+id/money_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#986515"
-                    android:text="850元"/>
+                    android:textColor="#986515" />
 
             </LinearLayout>
 
@@ -80,12 +81,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
-                    android:text="到账金额"/>
+                    android:text="服务费"/>
                 <TextView
+                    android:id="@+id/serverMoney_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#986515"
-                    android:text="850元"/>
+                    android:textColor="#986515" />
 
             </LinearLayout>
 
@@ -104,12 +105,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#000000"
-                    android:text="到账金额"/>
+                    android:text="借款天数"/>
                 <TextView
+                    android:id="@+id/day_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#986515"
-                    android:text="850元"/>
+                    android:textColor="#986515" />
 
             </LinearLayout>
 
@@ -132,11 +133,11 @@
                 android:textColor="#999999"
                 android:text="借款人"/>
             <TextView
+                android:id="@+id/name_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000000"
-                android:layout_alignParentRight="true"
-                android:text="张某某"/>
+                android:layout_alignParentRight="true" />
 
         </RelativeLayout>
 
@@ -157,11 +158,11 @@
                 android:textColor="#999999"
                 android:text="所属银行"/>
             <TextView
+                android:id="@+id/bankName_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000000"
-                android:layout_alignParentRight="true"
-                android:text="招商银行"/>
+                android:layout_alignParentRight="true" />
 
         </RelativeLayout>
 
@@ -182,11 +183,11 @@
                 android:textColor="#999999"
                 android:text="入账卡号"/>
             <TextView
+                android:id="@+id/bankNum_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#000000"
-                android:layout_alignParentRight="true"
-                android:text="621661******907"/>
+                android:layout_alignParentRight="true" />
 
         </RelativeLayout>
 
@@ -216,14 +217,14 @@
                     android:text="还款金额"
                     android:textColor="#000000"/>
                 <TextView
+                    android:id="@+id/huanMoney_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1140元"
                     android:textColor="#986515"/>
                 <TextView
+                    android:id="@+id/lixi_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="(包含利息40元)"
                     android:textColor="#986515"/>
 
             </LinearLayout>
@@ -236,7 +237,6 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:background="@drawable/shape_corner"
                 android:padding="10dp">
 
@@ -244,12 +244,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="还款日期"
+                    android:layout_centerHorizontal="true"
                     android:textColor="#000000"/>
                 <TextView
+                    android:id="@+id/huanDay_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2099-9-9"
                     android:textColor="#986515"
+                    android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"/>
 
             </RelativeLayout>
@@ -267,6 +269,7 @@
         android:textColor="#000000"/>
 
     <Button
+        android:id="@+id/commit_bt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorTheme"
@@ -274,6 +277,7 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
+        android:visibility="gone"
         android:text="确定"
         android:onClick="querenClick"/>
 
