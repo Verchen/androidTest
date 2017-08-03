@@ -8,7 +8,6 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,7 +61,7 @@ public class YinghuanFragment extends Fragment implements Yinghuan_adapter.Callb
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        sharedPreferences = mContext.getSharedPreferences("tokenSP", 0);
+        sharedPreferences = mContext.getSharedPreferences("jyd", 0);
 
         refreshLayout = getView().findViewById(R.id.id_zhangdan_refresh);
         refreshLayout.setColorSchemeResources(R.color.colorTheme);
@@ -84,7 +83,6 @@ public class YinghuanFragment extends Fragment implements Yinghuan_adapter.Callb
                 refreshLayout.setRefreshing(false);
                 String response = msg.getData().getString("response");
                 billModel = gson.fromJson(response, BillModel.class);
-                Log.e("账单列表", response);
                 adapter.setModel(billModel.getData());
             }
         };
@@ -122,6 +120,6 @@ public class YinghuanFragment extends Fragment implements Yinghuan_adapter.Callb
 
     @Override
     public void huanClick(BillModel.BillList.BillItem item) {
-        Toast.makeText(mContext, "还了", Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, "还了(还没接口)", Toast.LENGTH_SHORT).show();
     }
 }

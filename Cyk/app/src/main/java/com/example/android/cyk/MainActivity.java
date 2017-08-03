@@ -46,29 +46,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         selected(0);
 
-
-//        //初始化 OkHttpClient 对象
-//        OkHttpClient client = new OkHttpClient();
-//        //创建一个Request
-//        final Request request = new Request.Builder()
-//                .url("https://github.com/hongyangAndroid")
-//                .build();
-//        //new call
-//        Call call = client.newCall(request);
-//        //请求加入调度
-//        call.enqueue(new Callback() {
-//            @Override
-//            public void onFailure(Call call, IOException e) {
-//
-//            }
-//
-//            @Override
-//            public void onResponse(Call call, Response response) throws IOException {
-//                Log.i("---", response.body().string());
-//            }
-//        });
-
-
     }
 
 

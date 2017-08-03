@@ -48,7 +48,7 @@ public class QuerenjiekuanActivity extends AppCompatActivity {
         hud = KProgressHUD.create(this)
                 .setStyle(KProgressHUD.Style.SPIN_INDETERMINATE);
 
-        sp = getSharedPreferences("tokenSP", 0);
+        sp = getSharedPreferences("jyd", 0);
 
         Bundle bundle = this.getIntent().getExtras();
         shengqingID = bundle.getString("shenqingID");
@@ -138,7 +138,7 @@ public class QuerenjiekuanActivity extends AppCompatActivity {
         money.setText(detailModel.getInAccountMoney()+"元");
         serverMoney.setText(detailModel.getServiceMoney()+"元");
         day.setText(detailModel.getDay()+"天");
-        name.setText("乔某人");
+        name.setText("乔某人(接口没有)");
         bank.setText(detailModel.getBack());
         bankNum.setText(detailModel.getCardCode());
         huanMoney.setText(detailModel.getRepaymentAllMoney()+"元");

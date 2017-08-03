@@ -8,6 +8,7 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,13 +54,20 @@ public class JinduFragment extends Fragment implements Jindu_adapter.Callback {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.mContext = getContext();
-        sharedPreferences = mContext.getSharedPreferences("tokenSP", 0);
+        sharedPreferences = mContext.getSharedPreferences("jyd", 0);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.jindu_layout, container, false);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.e("进度页面", "onResume");
+        requestProgressList();
     }
 
     @Override
@@ -106,8 +114,6 @@ public class JinduFragment extends Fragment implements Jindu_adapter.Callback {
                 }
             }
         };
-
-        requestProgressList();
     }
 
     private void requestProgressList() {

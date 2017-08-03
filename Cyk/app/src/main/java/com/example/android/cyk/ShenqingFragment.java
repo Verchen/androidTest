@@ -53,6 +53,7 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
     private SwipeRefreshLayout refreshLayout;
 
     private Handler handler;
+    private Handler crachHandler;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,7 +71,7 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        sp = context.getSharedPreferences("tokenSP", 0);
+        sp = context.getSharedPreferences("jyd", 0);
 
         listView = getView().findViewById(R.id.shenqing_list_view);
         adapter = new Jiekuan_list_adapter(items, context);
@@ -100,6 +101,14 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
             }
         };
 
+        crachHandler = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                refreshLayout.setRefreshing(false);
+            }
+        };
+
         requestToken();
 
         requestBorrowList();
@@ -108,10 +117,10 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
     private void requestToken() {
         RequestBody body = new FormBody.Builder()
                 .addEncoded("grant_type", "password")
-                .addEncoded("client_id", "testclient")
-                .addEncoded("client_secret", "testpass")
-                .addEncoded("username", "1")
-                .addEncoded("password", "1")
+                .addEncoded("client_id", "arclient")
+                .addEncoded("client_secret", "eyJpdiI6IndOMjdYaWZRTW1WSElyMFVNQXdjcXc9PSIsInZhbHVlIjoiXC9UeWVoU1FOdHFtdGlvbkZc")
+                .addEncoded("username", "13261301876")
+                .addEncoded("password", "111")
                 .build();
         Request request = new Request.Builder()
                 .url(getString(R.string.host_url)+"/oauth/token")
@@ -142,10 +151,10 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
         RequestBody body = new FormBody.Builder()
                 .addEncoded("grant_type", "refresh_token")
                 .addEncoded("refresh_token", tokenModel.getRefresh_token())
-                .addEncoded("username", "1")
-                .addEncoded("password", "1")
-                .addEncoded("client_id", "testclient")
-                .addEncoded("client_secret", "testpass")
+                .addEncoded("username", "13261301876")
+                .addEncoded("password", "111")
+                .addEncoded("client_id", "arclient")
+                .addEncoded("client_secret", "eyJpdiI6IndOMjdYaWZRTW1WSElyMFVNQXdjcXc9PSIsInZhbHVlIjoiXC9UeWVoU1FOdHFtdGlvbkZc")
                 .build();
         Request request = new Request.Builder()
                 .url(getString(R.string.host_url)+"/oauth/refresh/token")
@@ -159,7 +168,6 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-
                 try {
                     Gson gson = new Gson();
                     TokenModel model = gson.fromJson(response.body().string(), TokenModel.class);
@@ -175,38 +183,31 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
 
 
     private void requestBorrowList() {
-        try {
-            long time = new Date().getTime();
-            RequestBody body = new FormBody.Builder()
-                    .addEncoded("userId", "1")
-                    .addEncoded("access_token", sp.getString("token", ""))
-                    .addEncoded("timestamp", String.valueOf(time))
-                    .build();
-            Request request = new Request.Builder()
-                    .url(getString(R.string.host_url)+"/project/list")
-                    .post(body)
-                    .build();
-            client.newCall(request).enqueue(new Callback() {
-                @Override
-                public void onFailure(Call call, IOException e) {
+        long time = new Date().getTime();
+        RequestBody body = new FormBody.Builder()
+                .addEncoded("userId", "1")
+                .addEncoded("access_token", sp.getString("token", ""))
+                .addEncoded("timestamp", String.valueOf(time))
+                .build();
+        Request request = new Request.Builder()
+                .url(getString(R.string.host_url)+"/project/list")
+                .post(body)
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
 
-                }
+            }
 
-                @Override
-                public void onResponse(Call call, Response response) throws IOException {
-                    if (response.isSuccessful()) {
-                        Message msg = new Message();
-                        Bundle data = new Bundle();
-                        data.putString("response", response.body().string());
-                        msg.setData(data);
-                        handler.sendMessage(msg);
-                    }
-                }
-            });
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Message msg = new Message();
+                Bundle data = new Bundle();
+                data.putString("response", response.body().string());
+                msg.setData(data);
+                handler.sendMessage(msg);
+            }
+        });
     }
 
     @Override
