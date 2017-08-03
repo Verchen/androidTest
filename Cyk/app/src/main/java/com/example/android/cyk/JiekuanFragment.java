@@ -1,5 +1,7 @@
 package com.example.android.cyk;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -24,6 +26,7 @@ public class JiekuanFragment extends Fragment implements View.OnClickListener{
     private Fragment shenqing_fragment;
     private Fragment jindu_fragment;
 
+    private SharedPreferences sharedPreferences;
 
     @Nullable
     @Override
@@ -34,6 +37,8 @@ public class JiekuanFragment extends Fragment implements View.OnClickListener{
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        sharedPreferences = getContext().getSharedPreferences("jyd", 0);
 
         initView();
         initEvent();
@@ -58,6 +63,7 @@ public class JiekuanFragment extends Fragment implements View.OnClickListener{
                 shenqing_bt.setTextColor(Color.parseColor("#82cdc4"));
                 break;
             case 1:
+
                 if (jindu_fragment == null){
                     jindu_fragment = new JinduFragment();
                     transaction.add(R.id.id_jiekuan_content, jindu_fragment);
@@ -92,6 +98,11 @@ public class JiekuanFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
+        if (sharedPreferences.getString("userId", "").isEmpty()){
+            Intent intent = new Intent(getContext(), LoginActivity.class);
+            startActivity(intent);
+            return;
+        }
         resetStatus();
         switch (view.getId())
         {

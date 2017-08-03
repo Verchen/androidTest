@@ -8,7 +8,6 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +20,7 @@ import com.google.gson.Gson;
 import com.kaopiz.kprogresshud.KProgressHUD;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -66,8 +66,11 @@ public class JinduFragment extends Fragment implements Jindu_adapter.Callback {
     @Override
     public void onResume() {
         super.onResume();
-        Log.e("进度页面", "onResume");
-        requestProgressList();
+        if (sharedPreferences.getString("userId", "").isEmpty()){
+            adapter.setDataSource(new ArrayList<ProgressModel.itemModel>());
+        }else {
+            requestProgressList();
+        }
     }
 
     @Override

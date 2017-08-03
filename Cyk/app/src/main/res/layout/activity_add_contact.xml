@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/colorWhite">
 
     <!--标题栏-->
     <RelativeLayout
@@ -53,6 +53,7 @@
             android:text="姓名"/>
 
         <EditText
+            android:id="@+id/id_contacts_add_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@color/colorGray"
@@ -76,11 +77,12 @@
             android:text="手机号"/>
 
         <EditText
+            android:id="@+id/id_contacts_add_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@color/colorGray"
             android:layout_marginLeft="10dp"
-            android:inputType="text"
+            android:inputType="phone"
             android:textColor="@color/colorBlack"
             android:hint="请输入联系人手机号码"/>
 
@@ -99,15 +101,33 @@
             android:text="关系"/>
 
         <EditText
+            android:id="@+id/id_contacts_add_relation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorHint="@color/colorGray"
             android:layout_marginLeft="10dp"
-            android:inputType="text"
             android:textColor="@color/colorBlack"
             android:hint="请选择与联系人关系"/>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </LinearLayout>
+
+
+    <NumberPicker
+        android:id="@+id/id_add_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:background="@color/colorGray"
+        android:visibility="invisible">
+
+    </NumberPicker>
 
 
 
