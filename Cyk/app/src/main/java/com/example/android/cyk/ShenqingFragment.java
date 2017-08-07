@@ -55,6 +55,8 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
     private Handler handler;
     private Handler crachHandler;
 
+    private String userId = "";
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +74,7 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
         super.onActivityCreated(savedInstanceState);
 
         sp = context.getSharedPreferences("jyd", 0);
+        userId = sp.getString("userId", "");
 
         listView = getView().findViewById(R.id.shenqing_list_view);
         adapter = new Jiekuan_list_adapter(items, context);
@@ -92,12 +95,16 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 refreshLayout.setRefreshing(false);
-                String response = msg.getData().getString("response");
-                Gson gson = new Gson();
-                borrowModel = gson.fromJson(response, BorrowModel.class);
-                Log.e("借款列表", borrowModel.getData().toString());
-                items = borrowModel.getData();
-                adapter.setDataSource(items);
+                try {
+                    String response = msg.getData().getString("response");
+                    Log.e("借款列表", response);
+                    Gson gson = new Gson();
+                    borrowModel = gson.fromJson(response, BorrowModel.class);
+                    items = borrowModel.getData();
+                    adapter.setDataSource(items);
+                } catch (Exception e) {
+
+                }
             }
         };
 
@@ -110,6 +117,12 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
         };
 
         requestToken();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
         requestBorrowList();
     }
@@ -137,10 +150,8 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
                 try {
                     Gson gson = new Gson();
                     tokenModel = gson.fromJson(response.body().string(), TokenModel.class);
-                    Log.e("获取token", tokenModel.toString());
                     requestRefreshToken();
                 }catch (Exception e) {
-                    Log.e("捕捉token崩溃", e.toString());
                 }
 
             }
@@ -171,10 +182,8 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
                 try {
                     Gson gson = new Gson();
                     TokenModel model = gson.fromJson(response.body().string(), TokenModel.class);
-                    Log.e("获取到刷新token", model.getAccess_token());
                     sp.edit().putString("token", model.getAccess_token()).commit();
                 }catch (Exception e){
-                    Log.e("捕捉刷新token崩溃", e.toString());
                 }
 
             }
@@ -184,15 +193,26 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
 
     private void requestBorrowList() {
         long time = new Date().getTime();
-        RequestBody body = new FormBody.Builder()
-                .addEncoded("userId", "1")
-                .addEncoded("access_token", sp.getString("token", ""))
-                .addEncoded("timestamp", String.valueOf(time))
-                .build();
-        Request request = new Request.Builder()
-                .url(getString(R.string.host_url)+"/project/list")
-                .post(body)
-                .build();
+
+        RequestBody body;
+        Request request;
+
+        if (sp.getString("userId", "").isEmpty()){
+            request = new Request.Builder()
+                    .url(getString(R.string.host_url)+"/project/list")
+                    .build();
+        } else {
+            body = new FormBody.Builder()
+                    .addEncoded("userId", sp.getString("userId", ""))
+                    .addEncoded("access_token", sp.getString("token", ""))
+                    .addEncoded("timestamp", String.valueOf(time))
+                    .build();
+            request = new Request.Builder()
+                    .url(getString(R.string.host_url)+"/project/list")
+                    .post(body)
+                    .build();
+        }
+
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
@@ -212,15 +232,20 @@ public class ShenqingFragment extends Fragment implements AdapterView.OnItemClic
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        if (i != 0){
-            return;
+
+        if (sp.getString("userId", "").isEmpty()){
+            Intent intent = new Intent(context, LoginActivity.class);
+            startActivity(intent);
+        } else {
+            BorrowModel.borrowItem item = borrowModel.getData().get(i);
+            if (item.getLock().equals("1")){
+                Intent intent = new Intent(context, QuerenjiekuanActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("shenqingID", item.getId());
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
         }
-        BorrowModel.borrowItem item = borrowModel.getData().get(i);
-        Intent intent = new Intent(context, QuerenjiekuanActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("shenqingID", item.getId());
-        intent.putExtras(bundle);
-        startActivity(intent);
     }
 }
 

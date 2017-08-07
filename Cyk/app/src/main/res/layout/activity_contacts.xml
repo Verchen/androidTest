@@ -38,11 +38,19 @@
             android:onClick="addContact"/>
     </RelativeLayout>
 
-    <ListView
-        android:id="@+id/id_contacts_content"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/id_contacts_list_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </ListView>
+        <ListView
+            android:id="@+id/id_contacts_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 
 </LinearLayout>

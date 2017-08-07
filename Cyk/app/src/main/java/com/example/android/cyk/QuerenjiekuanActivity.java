@@ -58,12 +58,16 @@ public class QuerenjiekuanActivity extends AppCompatActivity {
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 hud.dismiss();
-                String response = msg.getData().getString("response");
-                Log.e("借款详情", response);
-                Gson gson = new Gson();
-                BorrowDetailModel model = gson.fromJson(response, BorrowDetailModel.class);
-                detailModel = model.getData();
-                initView();
+                try {
+                    String response = msg.getData().getString("response");
+                    Log.e("借款详情", response);
+                    Gson gson = new Gson();
+                    BorrowDetailModel model = gson.fromJson(response, BorrowDetailModel.class);
+                    detailModel = model.getData();
+                    initView();
+                } catch (Exception e) {
+                    Log.e("借款详情crach", msg.getData().getString("response"));
+                }
             }
         };
 
@@ -92,7 +96,7 @@ public class QuerenjiekuanActivity extends AppCompatActivity {
     private void requestBorrowDetail() {
         hud.show();
         RequestBody body = new FormBody.Builder()
-                .addEncoded("userId", "1")
+                .addEncoded("userId", sp.getString("userId", ""))
                 .addEncoded("access_token", sp.getString("token", ""))
                 .addEncoded("timestamp", String.valueOf(new Date().getTime()))
                 .build();
@@ -108,13 +112,11 @@ public class QuerenjiekuanActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                if (response.isSuccessful()){
-                    Message msg = new Message();
-                    Bundle data = new Bundle();
-                    data.putString("response", response.body().string());
-                    msg.setData(data);
-                    handler.sendMessage(msg);
-                }
+                Message msg = new Message();
+                Bundle data = new Bundle();
+                data.putString("response", response.body().string());
+                msg.setData(data);
+                handler.sendMessage(msg);
             }
         });
 
@@ -149,8 +151,8 @@ public class QuerenjiekuanActivity extends AppCompatActivity {
     public void querenClick(View view){
         hud.show();
         RequestBody body = new FormBody.Builder()
-                .addEncoded("userId", "1")
-                .addEncoded("projectId", "1")
+                .addEncoded("userId", sp.getString("userId", ""))
+                .addEncoded("projectId", shengqingID)
                 .addEncoded("cardId", String.valueOf(detailModel.getCardId()))
                 .addEncoded("access_token", sp.getString("token", ""))
                 .addEncoded("timestamp", String.valueOf(new Date().getTime()))

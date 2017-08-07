@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -56,14 +57,18 @@ public class LoginActivity extends AppCompatActivity {
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 hud.dismiss();
-                String response = msg.getData().getString("response");
-                LoginModel model = gson.fromJson(response, LoginModel.class);
-                if (model.getCode().equals("200")){
-                    Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
-                    sharedPreferences.edit().putString("userId", model.getData().getId()).commit();
-                    finish();
-                }else {
-                    Toast.makeText(LoginActivity.this, model.getMessage(), Toast.LENGTH_SHORT).show();
+                try {
+                    String response = msg.getData().getString("response");
+                    LoginModel model = gson.fromJson(response, LoginModel.class);
+                    if (model.getCode().equals("200")){
+                        Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+                        sharedPreferences.edit().putString("userId", model.getData().getId()).commit();
+                        finish();
+                    }else {
+                        Toast.makeText(LoginActivity.this, model.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (Exception e) {
+                    Log.e("登录crash", msg.getData().getString("response"));
                 }
             }
         };
@@ -94,7 +99,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void forgetClick(View view){
-
+        Intent intent = new Intent(this, ForgetActivity.class);
+        startActivity(intent);
     }
 
     public void requestLogin(){
@@ -126,6 +132,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void back(View view) {
+        finish();
     }
 
 }

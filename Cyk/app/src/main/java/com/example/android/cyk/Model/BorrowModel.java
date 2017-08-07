@@ -7,16 +7,17 @@ import java.util.List;
  */
 
 public class BorrowModel {
-    private String code;
-    private String message;
+    private String code = "";
+    private String message = "";
     private List<borrowItem> data;
 
     public class borrowItem {
-        private String id;
-        private String money;
-        private String day;
-        private String lv;
-        private String sort;
+        private String id = "";
+        private String money = "";
+        private String day = "";
+        private String lv = "";
+        private String sort = "";
+        private String lock = "";
 
         public String getId() {
             return id;
@@ -58,9 +59,12 @@ public class BorrowModel {
             return sort;
         }
 
-        @Override
-        public String toString() {
-            return "data: id="+id+", money="+money+", day="+day+", lv="+lv+", sort="+sort;
+        public String getLock() {
+            return lock;
+        }
+
+        public void setLock(String lock) {
+            this.lock = lock;
         }
     }
 
@@ -88,8 +92,4 @@ public class BorrowModel {
         this.data = data;
     }
 
-    @Override
-    public String toString() {
-        return "BorrowModel: code="+code+", message="+message+", data="+data;
-    }
 }

@@ -4,19 +4,45 @@
     android:layout_height="match_parent"
     android:background="@color/colorWhite"
     android:gravity="center_horizontal"
-    android:padding="20dp"
     android:orientation="vertical">
+
+    <!--标题栏-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorTheme">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:textSize="18dp"
+            android:text="登录"
+            android:layout_centerInParent="true"/>
+        <ImageButton
+            android:id="@+id/id_back_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00000000"
+            android:src="@drawable/back"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:onClick="back"/>
+
+    </RelativeLayout>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_marginTop="20dp"
+        android:src="@drawable/app_icon" />
 
     <EditText
         android:id="@+id/id_login_phone_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:textColor="@color/colorBlack"
         android:hint="请输入手机号"
         android:textColorHint="@color/colorGray"
@@ -27,6 +53,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:textColor="@color/colorBlack"
         android:hint="请输入密码"
         android:textColorHint="@color/colorGray"
@@ -37,6 +65,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:text="登录"
         android:background="@color/colorTheme"
         android:onClick="loginClick"/>

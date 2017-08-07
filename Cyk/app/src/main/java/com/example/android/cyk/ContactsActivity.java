@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.android.cyk.Adapter.Contact_adapter;
+import com.example.android.cyk.Model.ContactResp;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -34,6 +36,8 @@ public class ContactsActivity extends AppCompatActivity implements AdapterView.O
     private Gson gson = new Gson();
     private Handler handler;
 
+    private SwipeRefreshLayout refreshLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,12 +53,24 @@ public class ContactsActivity extends AppCompatActivity implements AdapterView.O
         adapter = new Contact_adapter(this);
         listView.setAdapter(adapter);
 
+        refreshLayout = (SwipeRefreshLayout) findViewById(R.id.id_contacts_list_refresh);
+        refreshLayout.setColorSchemeResources(R.color.colorTheme);
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                requestContacts();
+            }
+        });
+
         handler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
+                refreshLayout.setRefreshing(false);
                 String response = msg.getData().getString("response");
-                Log.e("联系人列表", response);
+                Log.e("联系人", response);
+                ContactResp contactResp = gson.fromJson(response, ContactResp.class);
+                adapter.setDatasource(contactResp.getData());
             }
         };
 
@@ -102,4 +118,5 @@ public class ContactsActivity extends AppCompatActivity implements AdapterView.O
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
     }
+
 }

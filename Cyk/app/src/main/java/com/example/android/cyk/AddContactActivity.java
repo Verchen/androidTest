@@ -13,11 +13,13 @@ import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Toast;
 
+import com.example.android.cyk.Model.RelationResp;
 import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,6 +37,7 @@ public class AddContactActivity extends AppCompatActivity implements View.OnFocu
     private OkHttpClient client = new OkHttpClient();
     private Gson gson = new Gson();
     private Handler handler;
+    private Handler relationHandlerl;
     private SharedPreferences sharedPreferences;
 
     private EditText name;
@@ -44,7 +47,8 @@ public class AddContactActivity extends AppCompatActivity implements View.OnFocu
     private String phoneValue;
     private String relaValue;
     private NumberPicker picker;
-    private int relationId = 0;
+    private String relationId = "";
+    private List<RelationResp.RelationModel> relations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +73,21 @@ public class AddContactActivity extends AppCompatActivity implements View.OnFocu
             }
         };
 
+        relationHandlerl = new Handler(){
+            @Override
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                String response = msg.getData().getString("response");
+                Log.e("关系列表", response);
+                RelationResp relationResp = gson.fromJson(response, RelationResp.class);
+                relations = relationResp.getData();
+                initPicker();
+            }
+        };
+
         initView();
+
+        requestRelation();
     }
 
     private void initView() {
@@ -79,12 +97,43 @@ public class AddContactActivity extends AppCompatActivity implements View.OnFocu
         relation.setOnFocusChangeListener(this);
         relation.setInputType(InputType.TYPE_NULL);
         picker = (NumberPicker) findViewById(R.id.id_add_picker);
-        String[] source = {"选择关系", "父亲", "母亲", "夫妻", "子女", "兄弟姐妹", "其它亲属"};
+
+    }
+
+    private void initPicker() {
+
+//        String[] source = {"选择关系", "父亲", "母亲", "夫妻", "子女", "兄弟姐妹", "其它亲属"};
+        String[] source = new String[relations.size()+1];
+        source[0] = "选择关系";
+        for (int i = 1; i<(relations.size()+1); i++) {
+            source[i] = relations.get(i-1).getName();
+        }
         picker.setDisplayedValues(source);
         picker.setMinValue(0);
-        picker.setMaxValue(6);
+        picker.setMaxValue(source.length - 1);
         picker.setWrapSelectorWheel(false);
         picker.setOnValueChangedListener(this);
+    }
+
+    private void requestRelation(){
+        Request request = new Request.Builder()
+                .url(getString(R.string.host_url)+"/basic/relation")
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Message msg = new Message();
+                Bundle data = new Bundle();
+                data.putString("response", response.body().string());
+                msg.setData(data);
+                relationHandlerl.sendMessage(msg);
+            }
+        });
     }
 
     public void back(View view){
@@ -139,28 +188,15 @@ public class AddContactActivity extends AppCompatActivity implements View.OnFocu
 
     @Override
     public void onValueChange(NumberPicker numberPicker, int i, int i1) {
-        relationId = i1;
         switch (i1){
             case 0:
                 relation.setText("");
+                relationId = "";
                 break;
-            case 1:
-                relation.setText("父亲");
-                break;
-            case 2:
-                relation.setText("母亲");
-                break;
-            case 3:
-                relation.setText("夫妻");
-                break;
-            case 4:
-                relation.setText("子女");
-                break;
-            case 5:
-                relation.setText("兄弟姐妹");
-                break;
-            case 6:
-                relation.setText("其它亲属");
+            default:
+                RelationResp.RelationModel md = relations.get(i1 - 1);
+                relation.setText(md.getName());
+                relationId = md.getId();
                 break;
         }
     }

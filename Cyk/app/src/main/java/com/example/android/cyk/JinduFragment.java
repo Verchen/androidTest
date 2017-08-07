@@ -121,7 +121,7 @@ public class JinduFragment extends Fragment implements Jindu_adapter.Callback {
 
     private void requestProgressList() {
         RequestBody body = new FormBody.Builder()
-                .addEncoded("userId", "1")
+                .addEncoded("userId", sharedPreferences.getString("userId", ""))
                 .addEncoded("access_token", sharedPreferences.getString("token", ""))
                 .addEncoded("timestamp", String.valueOf(new Date().getTime()))
                 .build();
@@ -150,7 +150,7 @@ public class JinduFragment extends Fragment implements Jindu_adapter.Callback {
     public void cancelClick(ProgressModel.itemModel model) {
         hud.show();
         RequestBody body = new FormBody.Builder()
-                .addEncoded("userId", "1")
+                .addEncoded("userId", sharedPreferences.getString("userId", ""))
                 .addEncoded("loanId", String.valueOf(model.getLoan_id()))
                 .addEncoded("access_token", sharedPreferences.getString("token", ""))
                 .addEncoded("timestamp", String.valueOf(new Date().getTime()))

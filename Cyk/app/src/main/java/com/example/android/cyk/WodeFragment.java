@@ -68,6 +68,11 @@ public class WodeFragment extends Fragment implements AdapterView.OnItemClickLis
         setting_bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (sharedPreferences.getString("userId", "").isEmpty()){
+                    Intent intent = new Intent(getContext(), LoginActivity.class);
+                    startActivity(intent);
+                    return;
+                }
                 Intent intent = new Intent(mContext, SettingActivity.class);
                 startActivity(intent);
             }

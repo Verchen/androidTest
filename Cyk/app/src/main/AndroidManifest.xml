@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/app_icon"
@@ -28,7 +27,8 @@
         <activity android:name=".AddContactActivity" />
         <activity android:name=".BankCardActivity" />
         <activity android:name=".PhoneShimingActivity" />
-        <activity android:name=".ShenfenRenzhengActivity"></activity>
+        <activity android:name=".ShenfenRenzhengActivity" />
+        <activity android:name=".ForgetActivity"></activity>
     </application>
 
 </manifest>

@@ -56,6 +56,7 @@ public class Jiekuan_list_adapter extends BaseAdapter {
         String lv = item.getLv();
         String money = item.getMoney();
         String day = item.getDay();
+        String lock = item.getLock();
 
         LayoutInflater inflater = LayoutInflater.from(context);
         layout = (LinearLayout) inflater.inflate(R.layout.jiekuan_list_layout, null);
@@ -63,21 +64,28 @@ public class Jiekuan_list_adapter extends BaseAdapter {
         LinearLayout bg = layout.findViewById(R.id.jiekaun_item_bg);
         TextView level = layout.findViewById(R.id.jiekuan_item_level);
         TextView dayText = layout.findViewById(R.id.jiekuan_item_day);
-        switch (i)
-        {
-            case 0:
-                bg.setBackgroundResource(R.drawable.shape_corner_white);
 
-                Drawable drawable = context.getResources().getDrawable(R.drawable.lock_open);
-                drawable.setBounds(0,0,drawable.getMinimumWidth(),drawable.getMinimumHeight());
-
-                level.setCompoundDrawables(null, drawable, null, null);
-
-                break;
-
-            default:
-                break;
+        if (lock.equals("1")) {
+            bg.setBackgroundResource(R.drawable.shape_corner_white);
+            Drawable drawable = context.getResources().getDrawable(R.drawable.lock_open);
+            drawable.setBounds(0,0,drawable.getMinimumWidth(),drawable.getMinimumHeight());
+            level.setCompoundDrawables(null, drawable, null, null);
         }
+//        switch (i)
+//        {
+//            case 0:
+//                bg.setBackgroundResource(R.drawable.shape_corner_white);
+//
+//                Drawable drawable = context.getResources().getDrawable(R.drawable.lock_open);
+//                drawable.setBounds(0,0,drawable.getMinimumWidth(),drawable.getMinimumHeight());
+//
+//                level.setCompoundDrawables(null, drawable, null, null);
+//
+//                break;
+//
+//            default:
+//                break;
+//        }
 
 //        final SpannableStringBuilder sp = new  SpannableStringBuilder(money+"元");
 //        sp.setSpan(new ForegroundColorSpan(0xff82cdc4), money.length(), "700元".length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE); //字体颜色

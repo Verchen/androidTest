@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">佳易贷</string>
-    <string name="host_url">http://192.168.1.61</string> //http://118.89.220.47:2113
+    <string name="host_url">http://118.89.220.47:2113</string>
+    //http://118.89.220.47:2113 //http://192.168.1.61
 </resources>
