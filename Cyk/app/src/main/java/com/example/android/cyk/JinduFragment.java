@@ -11,6 +11,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ public class JinduFragment extends Fragment implements Jindu_adapter.Callback {
 
     private Context mContext;
     private ListView listView;
+    private Button emptyView;
     private Jindu_adapter adapter;
     private OkHttpClient client = new OkHttpClient();
     private Gson gson = new Gson();
@@ -83,6 +85,8 @@ public class JinduFragment extends Fragment implements Jindu_adapter.Callback {
         adapter = new Jindu_adapter(mContext, this);
         listView.setAdapter(adapter);
 
+        emptyView = getView().findViewById(R.id.id_jindu_empty);
+
         refreshLayout = getView().findViewById(R.id.jindu_refresh);
         refreshLayout.setColorSchemeResources(R.color.colorTheme);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -99,7 +103,14 @@ public class JinduFragment extends Fragment implements Jindu_adapter.Callback {
                 refreshLayout.setRefreshing(false);
                 String response = msg.getData().getString("response");
                 ProgressModel model = gson.fromJson(response, ProgressModel.class);
-                adapter.setDataSource(model.getData());
+                if (model.getData().size()>0) {
+                    refreshLayout.setVisibility(View.VISIBLE);
+                    adapter.setDataSource(model.getData());
+                    emptyView.setVisibility(View.GONE);
+                }else {
+                    emptyView.setVisibility(View.VISIBLE);
+                    refreshLayout.setVisibility(View.GONE);
+                }
             }
         };
 

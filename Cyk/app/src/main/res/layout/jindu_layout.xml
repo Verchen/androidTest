@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/jindu_refresh"
@@ -12,9 +14,20 @@
             android:id="@+id/id_jindu_list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
         </ListView>
 
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <Button
+        android:id="@+id/id_jindu_empty"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:visibility="gone"
+        android:src="@drawable/app_icon"
+        android:drawableTop="@drawable/empty"
+        android:background="#00000000"
+        android:text="您还没有任何借款申请哦"
+        android:textSize="20sp"
+        android:textColor="#bfbfbf"/>
 
 </LinearLayout>
