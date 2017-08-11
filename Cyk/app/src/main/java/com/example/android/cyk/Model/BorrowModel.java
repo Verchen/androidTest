@@ -66,6 +66,18 @@ public class BorrowModel {
         public void setLock(String lock) {
             this.lock = lock;
         }
+
+        @Override
+        public String toString() {
+            return "borrowItem{" +
+                    "id='" + id + '\'' +
+                    ", money='" + money + '\'' +
+                    ", day='" + day + '\'' +
+                    ", lv='" + lv + '\'' +
+                    ", sort='" + sort + '\'' +
+                    ", lock='" + lock + '\'' +
+                    '}';
+        }
     }
 
     public String getCode() {
@@ -92,4 +104,12 @@ public class BorrowModel {
         this.data = data;
     }
 
+    @Override
+    public String toString() {
+        return "BorrowModel{" +
+                "code='" + code + '\'' +
+                ", message='" + message + '\'' +
+                ", data=" + data +
+                '}';
+    }
 }
