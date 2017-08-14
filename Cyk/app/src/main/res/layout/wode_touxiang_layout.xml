@@ -29,11 +29,11 @@
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="20dp"
         android:layout_marginBottom="20dp"
-        android:src="@drawable/touxiang"
+        android:src="@drawable/avatour"
         android:scaleType="fitCenter"
         app:riv_corner_radius="40dp"
         app:riv_border_width="2dp"
-        app:riv_border_color="@color/colorTheme"/>
+        app:riv_border_color="@color/colorWhite"/>
 
 
 </RelativeLayout>
