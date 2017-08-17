@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorWhite">
+
+
+    <!--标题栏-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorTheme">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:textSize="18dp"
+            android:text="还款"
+            android:layout_centerInParent="true"/>
+        <ImageButton
+            android:id="@+id/id_back_bt"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="#00000000"
+            android:src="@drawable/back"
+            android:layout_centerVertical="true"
+            android:onClick="back"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#ffffff"
+            android:padding="5dp">
+            <TextView
+                android:id="@+id/yinghuan_detail_jine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#000000"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorTheme"
+            android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:text="本金"/>
+            <TextView
+                android:id="@+id/yinghuan_detail_benjin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#ffffff"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="利息/服务费"
+                android:textColor="#000000"/>
+            <TextView
+                android:id="@+id/yinghuan_detail_lixi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_alignParentRight="true"
+                android:textColor="#000000"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorTheme"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#ffffff"
+                android:text="还款方式"/>
+            <TextView
+                android:id="@+id/yinghuan_detail_huanType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#ffffff"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="到期时间"
+                android:textColor="#000000"/>
+            <TextView
+                android:id="@+id/yinghuan_detail_huanDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:layout_alignParentRight="true"
+                android:textColor="#000000"/>
+
+        </RelativeLayout>
+
+        <Button
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_corner_white"
+            android:textColor="@color/colorBlack"
+            android:onClick="lijiHuanClick"
+            android:text="立即还款"/>
+
+    </LinearLayout>
+
+</LinearLayout>
